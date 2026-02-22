@@ -1,52 +1,71 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-// Definimos los colores de la temática "Sintética La Arcadia"
+// appTheme.ts revisado
 export const colores = {
-    primary: '#2d5a27', // Verde de la cancha
-    secondary: '#FFD700', // Dorado de los trofeos
-    background: '#f0f2f0', // Gris claro de fondo
+    primary: '#2d5a27',      // Verde césped oscuro (Base)
+    accent: '#4ade80',       // Verde neón (Para resaltar, como en la web)
+    secondary: '#FFD700',    // Dorado (Trofeos y promociones)
+    background: '#0f172a',   // Azul muy oscuro/Negro (Efecto nocturno de la web)
+    cardBackground: '#1e293b', // Fondo para inputs y tarjetas
     white: '#ffffff',
-    black: '#1a1a1a',
-    error: '#FF0000',
+    textSecondary: '#94a3b8', // Gris para textos menos importantes
 };
 
 export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colores.background,
+        backgroundColor: colores.background, 
         padding: 20,
-        justifyContent: 'center',
+
+        justifyContent: 'flex-start', 
+        paddingTop: 10,
     },
     title: {
-        fontSize: 28,
+        fontSize: 32,
         fontWeight: 'bold',
-        color: colores.primary,
+        color: colores.accent, 
         textAlign: 'center',
-        marginBottom: 20,
+        marginBottom: 30,
         textTransform: 'uppercase',
+        letterSpacing: 1.5,
     },
     input: {
-        backgroundColor: colores.white,
-        height: 55,
+        backgroundColor: 'white' ,
+        height: 60,
         borderColor: colores.primary,
-        borderWidth: 1.5,
-        borderRadius: 12,
+        borderWidth: 1,
+        borderRadius: 15,
         paddingHorizontal: 15,
-        marginBottom: 15,
+        marginBottom: 20,
         fontSize: 16,
-        color: colores.black,
+        color:  '#000000'
     },
     btnPrincipal: {
-        backgroundColor: colores.primary,
+        backgroundColor: colores.accent,
         height: 55,
-        borderRadius: 12,
+        borderRadius: 30, 
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10,
-        elevation: 5,
+        shadowColor: colores.accent,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 8,
     },
+    logoContainer: {
+        alignItems: 'center',
+        marginBottom: 30,
+    },
+    logo: {
+        width: 180, 
+        height: 180,
+        borderRadius: 90, 
+        borderWidth: 3,
+        borderColor: colores.accent,
+    },
+
     btnTexto: {
-        color: colores.white,
+        color: colores.background, 
         fontSize: 18,
         fontWeight: 'bold',
     }
