@@ -68,5 +68,17 @@ export const globalStyles = StyleSheet.create({
         color: colores.background, 
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    iconPassword:{
+        position:'absolute',
+        bottom:35,
+        right:10
+    },
+    textRedirect:{
+        marginTop:20,
+        fontSize:16,
+        color:colores.primary,
+        fontWeight:'bold',
+        textAlign:'center'
     }
 });

@@ -2,7 +2,7 @@ import { CommonActions, useNavigation } from "@react-navigation/native";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { colores, globalStyles } from "../theme/appTheme";
 
-// PantallaBienvenidos.tsx mejorada
+
 export const PantallaBienvenidos = () => {
     const navigation = useNavigation();
     return (
