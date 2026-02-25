@@ -87,9 +87,6 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
 
     }
 
-
-
-
     return (
         <SafeAreaProvider>
             <ScrollView

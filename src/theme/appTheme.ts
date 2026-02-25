@@ -80,5 +80,118 @@ export const globalStyles = StyleSheet.create({
         color:colores.primary,
         fontWeight:'bold',
         textAlign:'center'
+    },
+    containerImput: {
+        marginVertical: 15
+    },
+    button: {
+        backgroundColor: colores.accent,
+        paddingVertical: 15,
+        borderRadius: 10
+    },
+    buttonTex: {
+        textAlign: 'center',
+        color: colores.background,
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    
+   
+    textPrice: {
+        textAlign: 'center',
+    },
+    containerCard: {
+
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: colores.secondary,
+        borderRadius: 3,
+        borderStyle: 'solid',
+        margin: 7,
+        shadowColor: "#000",
+        shadowOpacity: 0.25,
+        shadowRadius: 2.65,
+        elevation: 2
+    },
+    titleCard: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    imageCard: {
+        width: 80,
+        height: 80,
+        borderRadius: 10
+    },
+    iconCard: {
+        flex: 1,
+        alignItems: 'flex-end',
+        marginTop: 2
+    },
+    containerModal: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)'
+
+    },
+    bodyModal: {
+
+        backgroundColor: colores.cardBackground,
+        borderRadius: 10,
+        padding: 20
+    },
+    headerModal: {
+        flexDirection: 'row',
+        borderBottomColor: '#cfcfcf',
+        borderBottomWidth: 1,
+        padding: 10,
+
+    },
+    titleModal: {
+        fontWeight: 'bold',
+        fontSize: 18
+    },
+    imageModal: {
+        width: '60%',
+        height: 200,
+        borderRadius: 10,
+        marginTop: 10
+    },
+    containerQuantity:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 15
+    },
+    buttonQuantity:{
+        backgroundColor: colores.accent,
+        height: 50,
+        width: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        margin:15
+    },
+    textQuantity:{
+        color: colores.background,
+        fontSize: 18,
+        fontWeight: 'bold',
+        padding: 10
+    },
+    textTotalPrice:{
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
+    textStock:{
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'red',
+        textAlign: 'center',
+        marginTop: 10
     }
+
 });
