@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
-import { globalStyles } from '../../theme/appTheme';
+import { Alert, FlatList, Text, View } from 'react-native';
+import { colores, globalStyles } from '../../theme/appTheme';
 import { CardProductCommponents } from './componets/CardProductCommponents';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import Icon from '@expo/vector-icons/MaterialIcons';
+import { ModalCartCommponets } from './componets/ModalCartCommponets';
 
-
+// Interface para definir la estructura de los productos del inventario
 export interface Product {
     id: number;
     name: string;
@@ -12,7 +14,18 @@ export interface Product {
     stock: number;
     pathImage: string;
 }
+
+// Interface para definir la estructura de los elementos dentro del carrito
+export interface Cart {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    total: number;
+}
+
 export const HomeScreen = () => {
+
     const products: Product[] = [
         { id: 1, name: "Gatorade", price: 1.25, stock: 10, pathImage: "data:image/jpeg;base64,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" },
         { id: 2, name: "Powerade", price: 1.50, stock: 5, pathImage: "https://farmaenlace.vtexassets.com/arquivos/ids/175994-800-auto?v=638593395803000000&width=800&height=auto&aspect=true" },
@@ -23,35 +36,124 @@ export const HomeScreen = () => {
         { id: 7, name: "Panchitos", price: 0.50, stock: 6, pathImage: "https://143367421.cdn6.editmysite.com/uploads/1/4/3/3/143367421/KCQGNLUSSEGQ4YUIEFJWKIRJ.jpeg?width=2400&optimize=medium" },
         { id: 8, name: "Coca-cola", price: 0.60, stock: 4, pathImage: "https://www.supermercadosantamaria.com/documents/10180/10504/108300363_G.jpg" },
     ];
-    //hook useState permite gestionar la informacion de los productos 
+
+
+
+    // Gestiona la lista de productos y permite que la interfaz se refresque cuando el stock cambia
     const [productsState, setProductsState] = useState<Product[]>(products);
-    //funcion para controlar el stock de los productos
+
+    // Almacena la lista de productos seleccionados por el usuario para la compra
+    const [cart, setCart] = useState<Cart[]>([]);
+
+    // Controla la visibilidad del Modal del carrito (true: se ve, false: se oculta)
+    const [showModal, setShowModal] = useState<boolean>(false);
+    /**
+     * handleEmptyCart: Limpia por completo el carrito de compras.
+     * Se usa normalmente después de que el usuario finaliza una compra exitosa.
+     */
+    const handleEmptyCart = (): void => {
+        setCart([]);
+    }
+    /**
+     * handleOpenCartModal: Función de seguridad para abrir el carrito. */
+    const handleOpenCartModal = (): void => {
+        if (cart.length == 0) { //Valida que el carrito no esté vacío antes de mostrar el modal;
+            Alert.alert('Carrito Vacío', 'No hay productos seleccionados.')// si está vacío, lanza una alerta informativa.
+            return;
+        }
+        hidenModal();
+    };
+
+    /**
+     * hidenModal: Alterna el estado del modal*/
+    const hidenModal = (): void => {
+        setShowModal(!showModal); // * Si está abierto lo cierra, y si está cerrado lo abre.
+    }
+
+    /**
+     * changeStockProduct: Actualiza el inventario general.    
+     */
     const changeStockProduct = (id: number, quantity: number): void => {
-        const updateProduts = productsState.filter(item => item.id == id
+        const updateProduts = productsState.map(item => item.id == id  //* Busca el producto por ID y resta la cantidad comprada del stock disponible.
             ? { ...item, stock: item.stock - quantity }
             : item);
         setProductsState(updateProduts);
 
-
+        addProductCart(id, quantity); // * Luego dispara la función para añadir ese producto al carrito.
     }
+
+    /**
+     * addProductCart: Gestiona la lógica de agregación al carrito.   
+     */
+    const addProductCart = (id: number, quantity: number): void => {
+        const product = productsState.find(p => p.id === id); //*  Busca si el producto ya existe en el carrito.
+        if (!product) return; // *  Si existe: Actualiza la cantidad y recalcula el total de ese item.
+
+        const itemInCart = cart.find(item => item.id === id);//     *  Si no existe: Crea un nuevo objeto de tipo 'Cart' y lo añade a la lista.
+
+        if (itemInCart) {
+            // Caso: El producto ya está en el carrito, solo sumamos cantidades
+            const updatedCart = cart.map(item =>
+                item.id === id
+                    ? {
+                        ...item,
+                        quantity: item.quantity + quantity,
+                        total: (item.quantity + quantity) * item.price
+                    }
+                    : item
+            );
+            setCart(updatedCart);
+        } else {
+            // Caso: Producto nuevo en el carrito
+            const newItemCart: Cart = {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: quantity,
+                total: product.price * quantity
+            };
+            setCart([...cart, newItemCart]);
+        }
+    };
 
     return (
         <SafeAreaProvider>
+            <SafeAreaView>
+                <View>
 
-            <View >
-                <View style={{ alignItems: 'center', padding: 20, marginVertical: 20 }}>
-                    <Text style={globalStyles.title}>Productos</Text>
+                    <View style={globalStyles.headerHome}>
+                        <Text style={globalStyles.title}>Productos</Text>
+                        <View style={globalStyles.icomHome}>
+                            <Text style={globalStyles.textIconCart}>{cart.length}</Text>
+                            <Icon
+                                name="shopping-cart"
+                                color={colores.primary}
+                                size={30}
+                                onPress={handleOpenCartModal}
+                            />
+                        </View>
+                    </View>
+                    {/* Lista Principal: Renderiza los productos en dos columnas  */}
+                    <FlatList
+                        data={productsState}
+                        renderItem={({ item }) => (
+                            <CardProductCommponents
+                                item={item}
+                                changeStockProduct={changeStockProduct}
+                            />
+                        )}
+                        keyExtractor={(item) => item.id.toString()}
+                        numColumns={2}
+                        columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    />
+                    <ModalCartCommponets
+                        isVisible={showModal}
+                        cart={cart}
+                        hiddenModal={hidenModal}
+                        handleEmptyCart={handleEmptyCart}
+                    />
                 </View>
-                <FlatList
-                    data={productsState}
-                    renderItem={({ item }) => <CardProductCommponents item={item} />}
-                    keyExtractor={(item) => item.id.toString()}
-                    numColumns={2}
-                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                />
-            </View>
-
-        </SafeAreaProvider>
-
+            </SafeAreaView>
+        </SafeAreaProvider >
     )
 }

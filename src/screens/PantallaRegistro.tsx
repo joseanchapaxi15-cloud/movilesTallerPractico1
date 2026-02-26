@@ -21,14 +21,9 @@ interface Props {
     listUsers: User[];
     handleAddUser: (user: User) => void;
 }
-
 export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
-
-
     const navigation = useNavigation();
-
     const [form, setForm] = useState<From>({
-
         nombre: '',
         cedula: '',
         celular: '',
@@ -36,15 +31,11 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
         email: '',
         password: '',
         confirmPassword: '',
-
     });
     //funcion para capturar los valores de mi formulario 
     const handleChangeValue = (name: string, value: string): void => {
-
         setForm({ ...form, [name]: value });
-
     }
-
     //funsion para verificar si exixte el usuario
     const verifyUser = () => {
         const existUser = listUsers.filter(user => user.email == form.email)[0];
@@ -84,9 +75,7 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
         Alert.alert('Registro', 'Usuario registrado correctamente');
         //redireccionar al login
         navigation.goBack();
-
     }
-
     return (
         <SafeAreaProvider>
             <ScrollView
@@ -100,7 +89,6 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
                             resizeMode="contain" />
                     </View>
                     <Text style={globalStyles.title}>Registro Arcadia</Text>
-
                     <ImputComponent
                         placeholder="Nombre Completo"
                         name="nombre"
@@ -110,45 +98,36 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
                     <ImputComponent
                         placeholder="Cedula"
                         name="cedula"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="numeric"
-
                     />
                     <ImputComponent
                         placeholder="Celular"
                         name="celular"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="numeric"
-
                     />
                     <ImputComponent
                         placeholder="Direccion"
                         name="direccion"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="default"
                     />
                     <ImputComponent
                         placeholder="Email"
                         name="email"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="email-address"
                     />
                     <ImputComponent
                         placeholder="Contraseña"
                         name="password"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="default"
-                        isPassword={true}
                     />
                     <ImputComponent
                         placeholder="Confirme su contraseña"
                         name="confirmPassword"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="default"
                     />
@@ -165,10 +144,7 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
                         </TouchableOpacity>
                     </View>
                 </SafeAreaView>
-
-
             </ScrollView>
-
         </SafeAreaProvider>
     )
 }

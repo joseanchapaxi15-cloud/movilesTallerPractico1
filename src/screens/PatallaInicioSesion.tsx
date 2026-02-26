@@ -14,33 +14,21 @@ interface Form {
 interface Props {
     users: User[]; //arreglo de usuarios desde stack navigator
 }
-
 export const PantallaInicioSeSion = ({ users }: Props) => {
-
-
-
     const [form, setForm] = useState<Form>({
-
         email: '',
         password: ''
-
-
     });
-
     //hook useState: permite getsionar el estado de la contraseña 
     const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
-
     const handleChangeValue = (name: string, value: string): void => {
-
         setForm({ ...form, [name]: value });
-
     }
     //funcion para verificar si exixte el usuario 
     const verifyUser = (): User => {
         const existUser = users.filter(user => user.email == form.email && user.password == form.password)[0];
         return existUser;
     }
-
     // funcion pata iniciar sesion
     const handleSingIn = (): void => {
         if (form.email == '' || form.password == '') {
@@ -54,11 +42,8 @@ export const PantallaInicioSeSion = ({ users }: Props) => {
         }
          //si todo sale bien se craga la lista de productos 
         navigation.dispatch(CommonActions.navigate({ name: 'Home' }));
-
     }
-
     const navigation = useNavigation();
-
     return (
         <SafeAreaProvider>
             <SafeAreaView style={globalStyles.container}>
@@ -68,13 +53,9 @@ export const PantallaInicioSeSion = ({ users }: Props) => {
                         resizeMode="contain" />
                 </View>
                 <Text style={globalStyles.title}>Iniciar Sesion</Text>
-
-
-
                 <ImputComponent
                     placeholder="Email"
                     name="email"
-
                     handleChangeValue={handleChangeValue}
                     keyboardType="email-address"
                 />
@@ -82,7 +63,6 @@ export const PantallaInicioSeSion = ({ users }: Props) => {
                     <ImputComponent
                         placeholder="Contraseña"
                         name="password"
-
                         handleChangeValue={handleChangeValue}
                         keyboardType="default"
                         isPassword={hiddenPassword}
@@ -93,7 +73,6 @@ export const PantallaInicioSeSion = ({ users }: Props) => {
                         onPress={() => setHiddenPassword(!hiddenPassword)}
                     />
                 </View>
-
                 <View style={{ marginTop: 10 }}>
                     <Button
                         title='Iniciar Sesión'
@@ -101,7 +80,6 @@ export const PantallaInicioSeSion = ({ users }: Props) => {
                         onPress={() => { handleSingIn(); console.log(form); }}
                     />
                 </View>
-
                 <View style={{ marginTop: 10 }}>
                     <Button
                         title='Crear Cuenta'
