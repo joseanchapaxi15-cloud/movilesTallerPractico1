@@ -51,6 +51,7 @@ export const HomeScreen = () => {
      * handleEmptyCart: Limpia por completo el carrito de compras.
      * Se usa normalmente después de que el usuario finaliza una compra exitosa.
      */
+
     const handleEmptyCart = (): void => {
         setCart([]);
     }
@@ -86,10 +87,10 @@ export const HomeScreen = () => {
      * addProductCart: Gestiona la lógica de agregación al carrito.   
      */
     const addProductCart = (id: number, quantity: number): void => {
-        const product = productsState.find(p => p.id === id); //*  Busca si el producto ya existe en el carrito.
+        const product = productsState.find(p => p.id == id); //*  Busca si el producto ya existe en el carrito.
         if (!product) return; // *  Si existe: Actualiza la cantidad y recalcula el total de ese item.
-
-        const itemInCart = cart.find(item => item.id === id);//     *  Si no existe: Crea un nuevo objeto de tipo 'Cart' y lo añade a la lista.
+        // reto para que no se duplique 
+        const itemInCart = cart.find(item => item.id == id);//     *  Si no existe: Crea un nuevo objeto de tipo 'Cart' y lo añade a la lista.
 
         if (itemInCart) {
             // Caso: El producto ya está en el carrito, solo sumamos cantidades
@@ -122,6 +123,7 @@ export const HomeScreen = () => {
                 <View>
 
                     <View style={globalStyles.headerHome}>
+
                         <Text style={globalStyles.title}>Productos</Text>
                         <View style={globalStyles.icomHome}>
                             <Text style={globalStyles.textIconCart}>{cart.length}</Text>

@@ -14,7 +14,7 @@ interface From {
     direccion: string;
     email: string;
     password: string;
-    confirmPassword: string
+
 }
 
 interface Props {
@@ -30,7 +30,7 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
         direccion: '',
         email: '',
         password: '',
-        confirmPassword: '',
+
     });
     //funcion para capturar los valores de mi formulario 
     const handleChangeValue = (name: string, value: string): void => {
@@ -125,12 +125,7 @@ export const PantallaRegistro = ({ handleAddUser, listUsers }: Props) => {
                         handleChangeValue={handleChangeValue}
                         keyboardType="default"
                     />
-                    <ImputComponent
-                        placeholder="Confirme su contraseña"
-                        name="confirmPassword"
-                        handleChangeValue={handleChangeValue}
-                        keyboardType="default"
-                    />
+
                     <View style={{ marginTop: 20, marginBottom: 50 }}>
                         <Button title='Enviar Registro'
                             color={colores.primary}

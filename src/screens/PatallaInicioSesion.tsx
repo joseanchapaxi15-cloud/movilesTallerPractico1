@@ -37,7 +37,7 @@ export const PantallaInicioSeSion = ({ users }: Props) => {
             return;
         }
         if (!verifyUser()) {
-            Alert.alert('Error', 'Usuario y/o contraseña incporrectos');
+            Alert.alert('Error', 'Usuario y/o contraseña incorrectos');
             return;
         }
          //si todo sale bien se craga la lista de productos 

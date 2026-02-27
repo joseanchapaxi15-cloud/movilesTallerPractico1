@@ -9,7 +9,7 @@ interface Props {
     isVisible: boolean;      // Controla si el modal es visible
     cart: Cart[];            // Lista de productos añadidos al carrito
     hiddenModal: () => void; // Función para cerrar el modal
-    handleEmptyCart: () => void; // Función para limpiar el carrito después de la compra
+    handleEmptyCart: () => void; // Función para limpiar el carrito después de la compra viene desde homescreem
 }
 export const ModalCartCommponets = ({ isVisible, cart, hiddenModal, handleEmptyCart }: Props) => {
     // Obtiene el ancho de la pantalla para ajustar el diseño del modal
@@ -25,6 +25,7 @@ export const ModalCartCommponets = ({ isVisible, cart, hiddenModal, handleEmptyC
         });
         return total;
     }
+    //reto de vaciar el carrito 
     // Procesa la acción de compra:
     const handleBuy = (): void => {
         handleEmptyCart(); // * 1. Vacía el carrito mediante handleEmptyCart.

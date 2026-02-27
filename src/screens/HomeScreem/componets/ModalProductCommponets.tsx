@@ -28,7 +28,7 @@ export const ModalProductCommponets = ({ isVisible, item, hidenModal, changeStoc
                     ...globalStyles.bodyModal,
                     width: width * 0.80
                 }}>
-                    {/* Cabecera */}
+
                     <View style={globalStyles.headerModal}>
                         <Text style={globalStyles.titleModal}>
                             {item.name} - ${item.price.toFixed(2)}
@@ -48,25 +48,25 @@ export const ModalProductCommponets = ({ isVisible, item, hidenModal, changeStoc
                         }} style={globalStyles.imageModal} />
                     </View>
 
-                    {/* Sección condicional corregida */}
+
                     {(item.stock === 0)
                         ? <Text style={globalStyles.textStock}>Producto agotado</Text>
                         : (
                             <>
                                 <View style={globalStyles.containerQuantity}>
-                                    <TouchableOpacity 
+                                    <TouchableOpacity
                                         style={globalStyles.buttonQuantity}
                                         onPress={() => setQuantity(quantity - 1)}
                                         disabled={quantity === 1}>
                                         <Text style={globalStyles.textQuantity}>-</Text>
                                     </TouchableOpacity>
 
-                                    {/* Cambiado TouchableOpacity por View para evitar errores de texto */}
+
                                     <View>
                                         <Text style={globalStyles.textQuantity}>{quantity}</Text>
                                     </View>
 
-                                    <TouchableOpacity 
+                                    <TouchableOpacity
                                         style={globalStyles.buttonQuantity}
                                         onPress={() => setQuantity(quantity + 1)}
                                         disabled={quantity >= item.stock}>
@@ -75,12 +75,12 @@ export const ModalProductCommponets = ({ isVisible, item, hidenModal, changeStoc
                                 </View>
 
                                 <View style={{ alignItems: 'center' }}>
-                                    {/* Eliminados espacios en blanco al inicio del string */}
+
                                     <Text style={globalStyles.textTotalPrice}>Total: ${(item.price * quantity).toFixed(2)}</Text>
                                 </View>
 
-                                <TouchableOpacity 
-                                    style={globalStyles.button} 
+                                <TouchableOpacity
+                                    style={globalStyles.button}
                                     onPress={handleAddProduct}>
                                     <Text style={globalStyles.buttonTex}>Agregar Carrito</Text>
                                 </TouchableOpacity>
